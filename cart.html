@@ -112,35 +112,42 @@ function hapusItem(index){
 
 renderUlang();
 function checkoutWA(){
-let nama=
-localStorage.getItem("nama");
-let lokasi=
-localStorage.getItem("lokasi");
-let brand=
-localStorage.getItem("brand");
-let pesan=
+
+let nama = localStorage.getItem("nama");
+let lokasi = localStorage.getItem("lokasi");
+let brand = localStorage.getItem("brand");
+
+let total = 0; // 👈 TAMBAH INI
+
+let pesan =
 `Halo TITTIPKEN 🤎
 Nama : ${nama}
 Lokasi : ${lokasi}
 Brand : ${brand}
 Pesanan :
 `;
+
 cart.forEach(item=>{
-pesan += `
+    total += item.harga; // 👈 HITUNG ULANG
+
+    pesan += `
 1x ${item.nama}
 Rp${item.harga.toLocaleString('id-ID')}
 `;
 });
+
 pesan += `
 ━━━━━━━━
 Total Item : ${cart.length}
 Total Harga :
 Rp${total.toLocaleString('id-ID')}
 `;
+
 window.open(
-"https://wa.me/6289633016767?text="+
-encodeURIComponent(pesan)
+    "https://wa.me/6289633016767?text=" +
+    encodeURIComponent(pesan)
 );
+
 }
 </script>
 </body>
