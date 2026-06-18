@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keranjang - TITTIPKEN</title>
+<style>
+body{
+    background:#FFF7F2;
+    font-family:Arial,sans-serif;
+    padding:20px;
+    color:#6B4F3A;
+}
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+#listCart{
+    margin-bottom:25px;
+}
+.item{
+    background:white;
+    padding:18px;
+    border-radius:20px;
+    margin-bottom:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.nama{
+font-size:18px;
+font-weight:bold;
+}
+.harga{
+margin-top:8px;
+}
+.total{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+button{
+width:100%;
+margin-top:20px;
+padding:15px;
+border:none;
+border-radius:30px;
+background:#A8C3A0;
+color:white;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+<h1>🛒 Keranjang TITTIPKEN</h1>
+<div id="listCart"></div>
+<div class="total">
+<p>
+Total Item :
+<span id="jumlah"></span>
+</p>
+<h2>
+💰 Rp<span id="harga"></span>
+</h2>
+<button onclick="checkoutWA()">
+CHECKOUT WHATSAPP 🤎
+</button>
+</div>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = 0;
+let isi="";
+cart.forEach(item=>{
+total += item.harga;
+isi += `
+<div class="item">
+<div class="nama">
+${item.nama}
+</div>
+<div class="harga">
+Rp${item.harga.toLocaleString('id-ID')}
+</div>
+</div>
+`;
+});
+document.getElementById("listCart").innerHTML=isi;
+document.getElementById("jumlah").innerHTML=cart.length;
+document.getElementById("harga").innerHTML=
+total.toLocaleString('id-ID');
+function checkoutWA(){
+let nama=
+localStorage.getItem("nama");
+let lokasi=
+localStorage.getItem("lokasi");
+let brand=
+localStorage.getItem("brand");
+let pesan=
+`Halo TITTIPKEN 🤎
+Nama : ${nama}
+Lokasi : ${lokasi}
+Brand : ${brand}
+Pesanan :
+`;
+cart.forEach(item=>{
+pesan += `
+1x ${item.nama}
+Rp${item.harga.toLocaleString('id-ID')}
+`;
+});
+pesan += `
+━━━━━━━━
+Total Item : ${cart.length}
+Total Harga :
+Rp${total.toLocaleString('id-ID')}
+`;
+window.open(
+"https://wa.me/6289633016767?text="+
+encodeURIComponent(pesan)
+);
+}
+</script>
+</body>
+</html>
