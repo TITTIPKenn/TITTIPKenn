@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identitas - TITTIPKEN</title>
+<style>
+body{
+    background:#FFF7F2;
+    font-family:Arial,sans-serif;
+    color:#6B4F3A;
+}
+.container{
+    max-width:400px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+input{
+    width:100%;
+    padding:14px;
+    border:2px solid #F8C8D8;
+    border-radius:15px;
+    outline:none;
+    font-size:15px;
+}
+button{
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:#F8C8D8;
+    color:#6B4F3A;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{
+    background:#A8C3A0;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Yuk mulai pesan 🤎</h1>
+<label>Nama</label>
+<input type="text" id="nama" placeholder="Masukkan nama">
+<label>Lokasi Pengambilan</label>
+<input type="text" id="lokasi" placeholder="Contoh : Kertapati">
+<button onclick="lanjutMenu()">
+LANJUT KE MENU 🤎
+</button>
+</div>
+<script>
+function lanjutMenu(){
+const nama=document.getElementById("nama").value;
+const lokasi=document.getElementById("lokasi").value;
+if(nama=="" || lokasi==""){
+alert("Isi nama dan lokasi dulu ya 🤎");
+return;
+}
+localStorage.setItem("nama",nama);
+localStorage.setItem("lokasi",lokasi);
+window.location.href="menu.html";
+}
+</script>
+</body>
+</html>
