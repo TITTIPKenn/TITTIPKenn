@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Pilih Brand - TITTIPKEN</title>
+
+<style>
+
+body{
+background:#FFF7F2;
+font-family:Poppins,sans-serif;
+text-align:center;
+padding:30px;
+color:#6B4F3A;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:25px;
+margin:20px auto;
+max-width:350px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.badge-brown{
+display:inline-block;
+background:#6B4F3A;
+color:white;
+padding:8px 14px;
+border-radius:20px;
+margin-top:15px;
+font-size:14px;
+}
+
+.badge-green{
+display:inline-block;
+background:#A8C3A0;
+color:white;
+padding:8px 14px;
+border-radius:20px;
+margin-top:15px;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+☕ Pilih Brand Minuman 🤎
+</h1>
+
+<div class="card" onclick="pilihBrand('Kopi Kenangan')">
+
+<h2>☕ Kopi Kenangan</h2>
+
+<div class="badge-brown">
+Minimal order 2 item
+</div>
+
+</div>
+
+<div class="card" onclick="pilihBrand('Fore Coffee')">
+
+<h2>🤎 Fore Coffee</h2>
+
+<div class="badge-green">
+Tanpa minimal order
+</div>
+
+</div>
+
+<script>
+
+function pilihBrand(brand){
+
+localStorage.setItem("brand",brand);
+
+window.location.href="identity.html";
+
+}
+
+</script>
+
+</body>
+</html>
