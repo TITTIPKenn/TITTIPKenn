@@ -3,133 +3,291 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu - TITTIPKEN</title>
+<title>TITTIPKEN MENU FULL</title>
+
 <style>
 body{
-background:#FFF7F2;
-font-family:Arial,sans-serif;
-padding:20px;
-color:#6B4F3A;
+  background:#FFF7F2;
+  font-family:Arial;
+  padding:20px;
+  color:#6B4F3A;
 }
+
 .header{
-text-align:center;
-margin-bottom:25px;
+  text-align:center;
+  margin-bottom:20px;
 }
-#brand{
-font-size:28px;
-}
+
 .menu-container{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:18px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
+
 .card{
-background:white;
-border-radius:25px;
-padding:20px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  background:white;
+  border-radius:18px;
+  padding:12px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
-.icon{
-font-size:45px;
-margin-bottom:15px;
-}
-.card h3{
-font-size:17px;
-margin-bottom:10px;
-}
+
+h3{font-size:14px}
+
 .harga{
-font-size:18px;
-font-weight:bold;
-margin-bottom:15px;
+  font-weight:bold;
+  margin:6px 0;
+  font-size:13px;
 }
+
 button{
-background:#F8C8D8;
-color:#6B4F3A;
-border:none;
-border-radius:25px;
-padding:10px 18px;
-font-weight:bold;
-cursor:pointer;
+  background:#F8C8D8;
+  border:none;
+  padding:6px 10px;
+  border-radius:12px;
+  cursor:pointer;
+  margin:3px;
+  font-size:12px;
 }
-button:hover{
-background:#A8C3A0;
-}
+
 .cart{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#6B4F3A;
-color:white;
-padding:15px 20px;
-border-radius:50px;
-font-weight:bold;
-cursor:pointer;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#6B4F3A;
+  color:white;
+  padding:12px 16px;
+  border-radius:50px;
 }
 </style>
 </head>
+
 <body>
+
 <div class="header">
-<h1 id="brand"></h1>
-<p>Pilih menu favoritmu 🤎</p>
+<h2>TITTIPKEN FULL MENU 🤎</h2>
 </div>
-<div class="menu-container">
-<div class="card">
-<div class="icon">☕</div>
-<h3>Fore Aren Latte</h3>
-<div class="harga">Rp27.250</div>
-<button onclick="tambah('Fore Aren Latte',27250)">
-+ Tambah
-</button>
-</div>
-<div class="card">
-<div class="icon">🥤</div>
-<h3>Fore Cappuccino</h3>
-<div class="harga">Rp28.750</div>
-<button onclick="tambah('Fore Cappuccino',28750)">
-+ Tambah
-</button>
-</div>
-<div class="card">
-<div class="icon">🥐</div>
-<h3>Butter Croissant</h3>
-<div class="harga">Rp20.000</div>
-<button onclick="tambah('Butter Croissant',20000)">
-+ Tambah
-</button>
-</div>
-<div class="card">
-<div class="icon">🍞</div>
-<h3>Garlic Bread</h3>
-<div class="harga">Rp18.000</div>
-<button onclick="tambah('Garlic Bread',18000)">
-+ Tambah
-</button>
-</div>
-</div>
-<div class="cart" onclick="window.location.href='cart.html'">
+
+<div class="menu-container" id="menuBox"></div>
+
+<div class="cart" onclick="location.href='cart.html'">
 🛒 <span id="jumlah">0</span>
 </div>
+
 <script>
-document.getElementById("brand").innerHTML =
-localStorage.getItem("brand");
-let cart =
-JSON.parse(localStorage.getItem("cart")) || [];
-document.getElementById("jumlah").innerHTML =
-cart.length;
-function tambah(nama,harga){
-cart.push({
-nama:nama,
-harga:harga
-});
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
-document.getElementById("jumlah").innerHTML =
-cart.length;
-alert("🤎 Berhasil ditambahkan ke keranjang!");
+
+// ================= CART =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.getElementById("jumlah").innerText = cart.length;
+
+function tambah(nama, harga, size="single"){
+  cart.push({nama, harga, size, qty:1});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  document.getElementById("jumlah").innerText = cart.length;
+  alert("Masuk cart 🤎");
 }
+
+// ================= FULL MENU =================
+const menu = [
+
+{
+brand:"Fore Coffee",
+items:[
+
+{name:"Orange Cream Toffee Latte", R:27000, L:33000},
+{name:"Sunrise Mont-Black", R:24000, L:30000},
+
+{name:"Kopi Dari Tani", R:21000, L:27000},
+{name:"Butterscotch Sea Salt Latte", R:27000, L:33000},
+{name:"Buttercream Latte", R:27000, L:33000},
+{name:"Aren Latte", R:24000, L:30000},
+{name:"Pandan Latte", R:24000, L:30000},
+
+{name:"Americano", R:19500, L:26000},
+{name:"Manuka Americano", R:24000, L:30000},
+{name:"Triple Peach Americano", R:24000, L:30000},
+{name:"Berry Manuka Americano", R:26000, L:32000},
+
+{name:"Malty Latte", R:23500, L:30000},
+{name:"Bumi Latte", R:21000, L:27000},
+{name:"Cappuccino", R:24000, L:30000},
+{name:"Double Iced Shaken Latte", R:27000, L:33000},
+{name:"Cafe Latte", R:24000, L:30000},
+{name:"Nutty Oat Latte", R:32000, L:38000},
+{name:"Buttercream Tiramisu Latte", R:28000, L:34000},
+{name:"Espresso", R:18000, L:24000},
+{name:"Caramel Praline Macchiato", R:28000, L:34000},
+
+{name:"Hibiscus Lychee Peach Yakult", R:24000, L:30000},
+{name:"Sunny Citrus Jasmine", R:26000, L:32000},
+{name:"Coco Peach Fusion", R:24000, L:30000},
+
+{name:"Matcha Butter Salt Cream", R:26000, L:32000},
+{name:"Dark Chocolate", R:28000, L:34000},
+{name:"Almond Choco", R:32000, L:38000},
+{name:"Matcha Green Tea", R:28000, L:34000},
+{name:"Classic Milo", R:21000, L:27000},
+
+{name:"Choco Cookie Shake", R:24000, L:30000},
+{name:"Butterscotch Milk Crumble", R:24000, L:30000},
+{name:"Vanilla O’ Crumbs", R:24000, L:30000},
+{name:"Choco Caramel Cloud", R:24000, L:30000},
+
+{name:"Caramel Praline Coffee Ice Blended", R:28000, L:34000},
+{name:"Matcha Ice Blended", R:28000, L:34000},
+{name:"Strawberry Ice Blended", R:28000, L:34000},
+{name:"Chocolate Ice Blended", R:30000, L:36000},
+
+{name:"English Breakfast", R:24000, L:30000},
+{name:"Pure Chamomile", R:24000, L:30000}
+
+]
+},
+
+{
+brand:"Kopi Kenangan",
+items:[
+
+{name:"Kopi Kenangan Mantan", R:15000, L:19500},
+{name:"Americano", R:15000, L:18500},
+{name:"Latte", R:17500, L:20000},
+{name:"Butterscotch Sea Salt Latte", R:20500, L:23500},
+{name:"Cafe Malt Latte", R:18000, L:21000},
+{name:"Kopi Susu Black Aren", R:16500, L:19000},
+{name:"Spanish Latte", R:17000, L:20000},
+{name:"Butterscotch Aren Latte", R:18500, L:21500},
+{name:"Caramel Latte", R:18500, L:21500},
+{name:"Mocha Latte", R:20000, L:23500},
+{name:"Toffee Nut Latte", R:17500, L:20500},
+{name:"Toffee Nut Aren Latte", R:18500, L:21500},
+{name:"Toffee Nut Oat Latte", R:18500, L:21500},
+{name:"Creamy Aren Latte", R:19000, L:21000},
+{name:"Mocha Caramel", R:19000, L:22000},
+{name:"Caramel Macchiato", R:20000, L:24000},
+{name:"Avocado Coffee", R:22500, L:26500},
+{name:"Cappuccino", R:17500, L:21500},
+{name:"Pistachio Aren Latte", R:17500, L:22000},
+{name:"Duo Shot Iced Shaken", R:20000, L:24000},
+{name:"Matcha Espresso", R:19000, L:23500},
+{name:"Vanilla Latte", R:19000, L:23500},
+{name:"Hazelnut Latte", R:19500, L:23500},
+
+{name:"Choco Caramel Frappe", R:20000, L:25000},
+{name:"Butterscotch Kenangan Frappe", R:22500, L:26500},
+{name:"Matcha Kenangan Frappe", R:23500, L:27500},
+{name:"Kopi Kenangan Mantan Frappe", R:20000, L:25500},
+{name:"Vanilla Kenangan Frappe", R:21000, L:24000},
+{name:"Dutch Choco Kenangan Frappe", R:23500, L:27500},
+
+{name:"Tiramisu Latte", R:18000, L:22500},
+{name:"Tiramisu Mocha Latte", R:20000, L:24000},
+{name:"OG Aren Milky", R:18000, L:22500},
+{name:"OG Aren Speculoos", R:19000, L:23500},
+{name:"Dua Shot OG Aren", R:20000, L:24500},
+{name:"OG Thaitea", R:16500, L:19500},
+{name:"Thaitea Loaded", R:20500, L:25500},
+{name:"Thaitea Aren", R:18500, L:22500},
+{name:"Thaitea Coffee", R:20000, L:24500},
+
+{name:"Toffee Nut Choco Macchiato", R:19000, L:24000},
+{name:"Butterscotch Sea Salt Crumble", R:18000, L:25500},
+{name:"Hazelnut Choco Milk Tea", R:18500, L:22500},
+{name:"Avocado Caramel", R:20000, L:24000},
+{name:"Milk Oreo Crumble", R:20000, L:25000},
+{name:"Babycino", R:16500, L:22000},
+{name:"Avocado Milk", R:18000, L:22000},
+{name:"Caramel Dutch Choco", R:20000, L:24000},
+{name:"Dutch Chocolate", R:19000, L:23500},
+{name:"Matcha Latte", R:19000, L:22500},
+{name:"Lemon Black Tea", R:14000, L:18000},
+{name:"Kenangan Milk Tea", R:16000, L:23000},
+{name:"Milo Dinosaurs", R:18000, L:22000},
+{name:"Oreo Shake", R:19000, L:23000},
+{name:"Hazelnut Dutch Choco", R:21000, L:25000},
+{name:"Susu Grass Jelly", R:18000, L:23000},
+{name:"Fresh Lemonade", R:15500, L:20500},
+{name:"Raspberry Hibiscus", R:17000, L:22000},
+{name:"Oatside Matcha Latte", R:20000, L:24000},
+
+// 🍞 CEMILAN FULL
+{name:"Roti Susu Manis", price:9000},
+{name:"Roti Coklat Klasik", price:9000},
+{name:"Roti Keju Manis", price:10500},
+{name:"Roti Srikaya", price:11500},
+{name:"Butter Croissant", price:11000},
+{name:"Chocolate Croissant", price:13500},
+{name:"Friend-Chip Cookie", price:12500},
+{name:"Join The Dark Side Cookie", price:14500},
+{name:"Kenangan Toast Bambang Choco Cheese", price:12500},
+{name:"Kenangan Toast Adam Ayam", price:13500},
+{name:"Kenangan Toast Wahyu Sapi", price:13500},
+{name:"Roti Sisir Original", price:9500},
+{name:"Roti Sisir Coklat", price:10500},
+{name:"Roti Sisir Keju", price:11000},
+{name:"Donut Pink Confetti", price:9500},
+{name:"Donut Almond", price:10500},
+{name:"Donut Matcha", price:10500},
+{name:"Donut Abon", price:11000},
+{name:"Roti Gulung Aren", price:11000},
+{name:"Canelé Original", price:10500},
+{name:"Canelé Toffee Nut Crumble", price:11000},
+{name:"Roti Gulung Abon", price:12500},
+{name:"Croissant Abon", price:12500},
+{name:"Pizza Cheese", price:14500},
+{name:"Dirty Croissant Matcha", price:14000},
+{name:"Sandwich Chicken TorTor", price:14500},
+{name:"Sandwich Smoked Beef & Cheese", price:14500},
+{name:"Roti Indonesia", price:17500},
+{name:"Chicken Pad Kra Pao Rice", price:17500},
+{name:"Pasta Mentai", price:18500},
+{name:"Chicken Japanese Curry Rice", price:18500},
+{name:"Thai Chicken Spaghetti", price:18000},
+{name:"Spaghetti Tuna Aglio Olio", price:18500},
+{name:"Salt Bread Original", price:11000},
+{name:"Salt Bread Beef & Cheese", price:13500},
+{name:"Chocolate Donut", price:9500},
+{name:"Sugar Donut", price:8000},
+{name:"Vanilla Choux Puff", price:10000},
+{name:"Strawberry Choux Puff", price:10000},
+{name:"Chocolate Choux Puff", price:10000},
+{name:"Bolu Marble Cheese", price:13000},
+{name:"Bolu Marble Mocca", price:13000},
+{name:"Bolu Marble Chocolate", price:13000},
+{name:"Choco-Chip Cookies", price:11500}
+
+]
+}
+
+];
+
+// ================= RENDER =================
+const box = document.getElementById("menuBox");
+
+menu.forEach(section=>{
+  section.items.forEach(item=>{
+    let card = document.createElement("div");
+    card.className="card";
+
+    if(item.R){
+      card.innerHTML = `
+        <h3>${item.name}</h3>
+        <div class="harga">R ${item.R} | L ${item.L}</div>
+        <button onclick="tambah('${item.name}',${item.R},'R')">R</button>
+        <button onclick="tambah('${item.name}',${item.L},'L')">L</button>
+      `;
+    } else {
+      card.innerHTML = `
+        <h3>${item.name}</h3>
+        <div class="harga">Rp ${item.price}</div>
+        <button onclick="tambah('${item.name}',${item.price})">+ Tambah</button>
+      `;
+    }
+
+    box.appendChild(card);
+  });
+});
+
 </script>
+
 </body>
 </html>
