@@ -69,8 +69,12 @@ CHECKOUT WHATSAPP 🤎
 </div>
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function renderUlang(){
+
 let total = 0;
-let isi="";
+let isi = "";
+
 cart.forEach((item,index)=>{
 total += item.harga;
 
@@ -95,15 +99,18 @@ isi += `
 </div>
 `;
 });
-document.getElementById("listCart").innerHTML=isi;
-document.getElementById("jumlah").innerHTML=cart.length;
-document.getElementById("harga").innerHTML=
-total.toLocaleString('id-ID');
+
+document.getElementById("listCart").innerHTML = isi;
+document.getElementById("jumlah").innerHTML = cart.length;
+document.getElementById("harga").innerHTML = total.toLocaleString('id-ID');
+}
 function hapusItem(index){
     cart.splice(index,1);
     localStorage.setItem("cart", JSON.stringify(cart));
-    location.reload();
+    renderUlang();
 }
+
+renderUlang();
 function checkoutWA(){
 let nama=
 localStorage.getItem("nama");
