@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu - TITTIPKEN</title>
+<style>
+body{
+    background:#FFF7F2;
+    font-family:Arial,sans-serif;
+    padding:20px;
+    color:#6B4F3A;
+}
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+#brand{
+    font-size:28px;
+}
+.menu-container{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+.card{
+    background:white;
+    border-radius:25px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+.icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+.card h3{
+    font-size:17px;
+    margin-bottom:10px;
+}
+.harga{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+button{
+    background:#F8C8D8;
+    color:#6B4F3A;
+    border:none;
+    border-radius:25px;
+    padding:10px 18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#A8C3A0;
+}
+.cart{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#6B4F3A;
+color:white;
+padding:15px 20px;
+border-radius:50px;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div class="header">
+<h1 id="brand"></h1>
+<p>Pilih menu favoritmu 🤎</p>
+</div>
+<div class="menu-container">
+<div class="card">
+<div class="icon">☕</div>
+<h3>Fore Aren Latte</h3>
+<div class="harga">Rp27.250</div>
+<button onclick="tambah('Fore Aren Latte',27250)">
++ Tambah
+</button>
+</div>
+<div class="card">
+<div class="icon">🥤</div>
+<h3>Fore Cappuccino</h3>
+<div class="harga">Rp28.750</div>
+<button onclick="tambah('Fore Cappuccino',28750)">
++ Tambah
+</button>
+</div>
+<div class="card">
+<div class="icon">🥐</div>
+<h3>Butter Croissant</h3>
+<div class="harga">Rp20.000</div>
+<button onclick="tambah('Butter Croissant',20000)">
++ Tambah
+</button>
+</div>
+<div class="card">
+<div class="icon">🍞</div>
+<h3>Garlic Bread</h3>
+<div class="harga">Rp18.000</div>
+<button onclick="tambah('Garlic Bread',18000)">
++ Tambah
+</button>
+</div>
+</div>
+<div class="cart">
+🛒 <span id="jumlah">0</span>
+</div>
+<script>
+document.getElementById("brand").innerHTML=
+localStorage.getItem("brand");
+let cart=[];
+function tambah(nama,harga){
+cart.push({
+nama:nama,
+harga:harga
+});
+document.getElementById("jumlah").innerHTML=
+cart.length;
+alert("🤎 Berhasil ditambahkan ke keranjang!");
+}
+</script>
+</body>
+</html>
